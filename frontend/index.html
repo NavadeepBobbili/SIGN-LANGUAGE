@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Action to Text — local static hand-pose prototype." />
+    <title>Action to Text | Hand Pose Prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Action to Text home"><span class="brand-icon">A</span><span>ACTION <em>TO TEXT</em></span></a>
+      <span class="local-status"><i></i> Local processing</span>
+    </header>
+
+    <main id="top" class="shell">
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">HAND POSE PROTOTYPE</p>
+          <h1 id="page-title">Turn simple hand actions into <span>text.</span></h1>
+          <p>Use your webcam to detect a small set of static number and letter poses. Nothing is recorded or uploaded.</p>
+        </div>
+        <aside class="scope-note"><strong>Prototype scope</strong><span>Landmarks + rule-based matching. This is not full ISL/ASL translation.</span></aside>
+      </section>
+
+      <section class="workspace" aria-label="Action to text workspace">
+        <article class="camera-card panel">
+          <div class="panel-heading"><div><p class="eyebrow">CAMERA</p><h2>Hand detection</h2></div><span id="camera-badge" class="badge">Idle</span></div>
+          <div id="camera-panel" class="camera-panel">
+            <video id="webcam" autoplay muted playsinline aria-label="Live webcam preview"></video>
+            <canvas id="landmark-canvas" aria-hidden="true"></canvas>
+            <div id="camera-placeholder" class="camera-placeholder"><span>⌑</span><b>Camera is off</b><small>Start the camera to begin.</small></div>
+            <p id="camera-error" class="camera-error" role="alert" hidden></p>
+            <div class="camera-footer"><span id="camera-status"><i></i> Camera idle</span><span id="fps-output">00 FPS</span></div>
+          </div>
+          <div class="camera-controls">
+            <button id="start-camera" class="button primary" type="button">Start Camera</button>
+            <button id="stop-camera" class="button secondary" type="button" disabled>Stop Camera</button>
+          </div>
+          <p class="privacy-note">Your browser processes the camera feed locally. Video is not stored by this app.</p>
+        </article>
+
+        <article class="result-card panel">
+          <div class="panel-heading"><div><p class="eyebrow">RECOGNITION</p><h2>Action to Text</h2></div><button id="clear-text" class="text-button" type="button">Clear text</button></div>
+          <div class="mode-selector" role="group" aria-label="Prototype recognition mode">
+            <button class="mode-button active" data-mode="numbers" type="button">Numbers</button>
+            <button class="mode-button" data-mode="letters" type="button">Letters</button>
+          </div>
+          <div class="detection-card">
+            <span class="detection-label">Detected action</span>
+            <strong id="detected-token">—</strong>
+            <span id="detected-detail">Show a supported static hand pose.</span>
+            <div class="score-row"><span>Pose match</span><b id="match-score">—</b></div>
+            <div class="progress"><span id="match-bar"></span></div>
+          </div>
+          <label class="threshold-label" for="threshold">Acceptance threshold <output id="threshold-value">78%</output></label>
+          <input id="threshold" type="range" min="55" max="95" value="78" />
+          <label class="output-label" for="text-output">Text output</label>
+          <textarea id="text-output" rows="4" placeholder="Accepted actions appear here…" spellcheck="false"></textarea>
+          <p id="acceptance-message" class="acceptance-message">Hold a clear pose briefly to add it to the text.</p>
+        </article>
+      </section>
+
+      <section class="guide panel" aria-labelledby="guide-title">
+        <div><p class="eyebrow">SUPPORTED DEMO POSES</p><h2 id="guide-title">Keep your palm facing the camera.</h2><p>Use a bright background, show your whole hand, and hold each static pose steady for about half a second.</p></div>
+        <div class="guide-columns">
+          <div><h3>Number mode</h3><p><b>1</b> index finger · <b>2</b> index + middle · <b>3</b> index + middle + ring · <b>4</b> four fingers · <b>5</b> open hand</p></div>
+          <div><h3>Letter mode</h3><p><b>A</b> fist · <b>B</b> four fingers · <b>F</b> thumb/index touch · <b>I</b> pinky · <b>L</b> thumb + index · <b>V</b> two fingers · <b>W</b> three fingers · <b>Y</b> thumb + pinky</p></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>Action to Text · Limited static-pose research prototype · <span id="year"></span></footer>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

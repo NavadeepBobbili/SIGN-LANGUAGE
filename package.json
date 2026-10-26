@@ -1,0 +1,9 @@
+{
+  "name": "action-to-text",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local webcam static hand-pose to text prototype",
+  "dependencies": {
+    "@mediapipe/tasks-vision": "0.10.35"
+  }
+}

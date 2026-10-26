@@ -1,0 +1,6 @@
+npm install
+py -m http.server 5500
+
+
+AFTER RUNNING COMMANDS IN TERMINAL OPEN
+"" http://localhost:5500/frontend/ ""
